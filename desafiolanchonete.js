@@ -1,21 +1,23 @@
 import { CaixaDaLanchonete } from "./caixa-da-lanchonete.js";
 
 describe('CaixaDaLanchonete', () => {
-
+// Função auxiliar para validar um teste
     const validaTeste = (formaDePagamento, resultadoEsperado, itens) => {
-        const resultado = new CaixaDaLanchonete()
+// Cria uma instância de CaixaDaLanchonete e calcula o valor da compra 
+    const resultado = new CaixaDaLanchonete()
             .calcularValorDaCompra(formaDePagamento, itens);
-
+ // Verifica se o resultado do cálculo é igual ao resultado esperado
         expect(resultado.replace("\xa0", " ")).toEqual(resultadoEsperado);
     };
 
+    // Teste para diferentes cenários de carrinho vazio
     test.each([
         ['com carrinho vazio', 'dinheiro', 'Não há itens no carrinho de compra!', []],
         ['com carrinho vazio', 'credito', 'Não há itens no carrinho de compra!', []],
         ['com carrinho vazio', 'debito', 'Não há itens no carrinho de compra!', []],
     ])('compra %p em %p deve resultar em %p', (_, formaDePagamento, resultadoEsperado, itens) =>
         validaTeste(formaDePagamento, resultadoEsperado, itens));
-
+ // Testes para diferentes cenários de compras simples
     test.each([
         ['dinheiro', 'R$ 2,85', ['cafe,1']],
         ['credito', 'R$ 3,09', ['cafe,1']],
@@ -49,7 +51,9 @@ describe('CaixaDaLanchonete', () => {
     ])('compra %p em %p deve resultar em %p', (_, formaDePagamento, resultadoEsperado, itens) =>
         validaTeste(formaDePagamento, resultadoEsperado, itens));
 });
+// Mais variados tipos de testes acima
 
+// Definição do cardápio com descrições e valores dos itens
 const cardapio = {
     cafe: { descricao: "Café", valor: 3.00 },
     chantily: { descricao: "Chantily (extra do Café)", valor: 1.50 },
@@ -60,7 +64,7 @@ const cardapio = {
     combo1: { descricao: "1 Suco e 1 Sanduíche", valor: 9.50 },
     combo2: { descricao: "1 Café e 1 Sanduíche", valor: 7.50 }
   };
-  
+  // Função para calcular o valor do pedido com base no cardápio e regras
   function calcularValorPedido(pedido, formaPagamento) {
     let valorTotal = 0;
   
@@ -96,14 +100,14 @@ const cardapio = {
   
     return `Total a pagar: R$ ${valorTotal.toFixed(2)}`;
   }
-  
+  // Exemplo de pedido e forma de pagamento
   const pedidoExemplo = [
     { codigo: "cafe" },
     { codigo: "chantily", extra: "cafe" },
     { codigo: "suco" }
   ];
   const formaPagamentoExemplo = "dinheiro";
-  
+   // Chamando a função para calcular o valor do pedido de exemplo
   const valorPedido = calcularValorPedido(pedidoExemplo, formaPagamentoExemplo);
-  console.log(valorPedido);
+  console.log(valorPedido); // Exibe o valor calculado no console
    
