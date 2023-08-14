@@ -64,8 +64,8 @@ const cardapio = {
     combo1: { descricao: "1 Suco e 1 Sanduíche", valor: 9.50 },
     combo2: { descricao: "1 Café e 1 Sanduíche", valor: 7.50 }
   };
-  // Função para calcular o valor do pedido com base no cardápio e regras
-  function calcularValorPedido(pedido, formaPagamento) {
+     // Função para calcular o valor do pedido com base no cardápio e regras
+function calcularValorDaCompra(pedido, formaPagamento) {
     let valorTotal = 0;
   
     if (pedido.length === 0) {
@@ -108,6 +108,6 @@ const cardapio = {
   ];
   const formaPagamentoExemplo = "dinheiro";
    // Chamando a função para calcular o valor do pedido de exemplo
-  const valorPedido = calcularValorPedido(pedidoExemplo, formaPagamentoExemplo);
+  const valorPedido = calcularValorDaCompra(pedidoExemplo, formaPagamentoExemplo);
   console.log(valorPedido); // Exibe o valor calculado no console
    
